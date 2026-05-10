@@ -1,0 +1,7 @@
+#it has list of all packages that we need to install for our flask application to work properly. We can use this file to easily set up our development environment by running 'pip install -r requirements.txt' in the terminal, which will install all the packages listed in this file.   
+
+flask
+pymongo
+dnspython
+datetime
+python-dotenv
