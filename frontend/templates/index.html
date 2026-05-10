@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Tutorial | Sign Up Page</title>       
+</head>
+<body>
+    <p>Hi All, welcome to the signup page!</p>
+    <p>Today is day {{ day_of_week }}</p>
+    <p>Current time is {{ current_time }}</p>
+    <div class="centrod">
+        <form action="/submit" method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" placeholder="Enter your username" required><br>
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Enter your email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Enter your password" required><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" placeholder="Confirm your password" required><br>
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="/get_data">View Users</a> <!-- we add a link to navigate to the '/users' page to view the list of users -->
+        <!-- <button onclick="window.location.href='/users'">View Users</button> we add a button to navigate to the '/users' page to view the list of users -->
+    </div>
+</body>
+<style>
+    body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+    }
+    p {
+        font-size: 24px;
+        color: #333;
+    }
+    .centrod {
+        height: 10vh;
+    }
+</style>        
+</html>
+

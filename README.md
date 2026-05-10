@@ -1,29 +1,31 @@
-# flask-tutotials
-# Flask Learning Project
+# Flask Frontend + Backend Project
 
-A simple Flask application created for learning Flask basics, API creation, routing, templates, request handling, and arithmetic operations.
+A simple full-stack Python project using Flask for both frontend and backend services with MongoDB Atlas integration.
 
----
-
-# Features
-
-- Home page with current day and time
-- About page
-- Dynamic API routes
-- Arithmetic operation APIs
-- Query parameter handling
+This project demonstrates:
+- Flask API development
+- Frontend and backend separation
+- MongoDB Atlas integration
+- REST API communication
+- Form submission
 - JSON responses
-- HTML template rendering using Jinja2
-- Current server time API
+- Environment variable handling using `.env`
 
 ---
 
 # Technologies Used
 
+## Backend
 - Python 3
 - Flask
-- HTML
-- Jinja2 Templates
+- MongoDB Atlas
+- PyMongo
+- python-dotenv
+
+## Frontend
+- Flask
+- HTML Templates
+- Requests library
 
 ---
 
@@ -32,38 +34,65 @@ A simple Flask application created for learning Flask basics, API creation, rout
 ```bash
 project/
 │
-├── app.py
-├── templates/
-│   └── index.html
+├── backend/
+│   ├── app.py
+│   ├── .env
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── app.py
+│   ├── templates/
+│   │   └── index.html
+│   └── requirements.txt
+│
 └── README.md
 ```
 
 ---
 
+# Features
+
+## Backend Features
+- MongoDB Atlas connection
+- Save form data into MongoDB
+- Retrieve user data from MongoDB
+- REST API endpoints
+- JSON response handling
+
+## Frontend Features
+- HTML page rendering
+- Submit form data to backend API
+- Fetch user data from backend API
+- Display API responses
+
+---
+
 # Installation
 
-## 1. Clone the Repository
+## 1. Clone Repository
 
 ```bash
 git clone <your-github-repo-url>
 cd <project-folder>
 ```
 
-## 2. Create Virtual Environment (Optional but Recommended)
+---
+
+# Create Virtual Environment
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 ```
 
-### Activate Virtual Environment
+Activate virtual environment:
 
-#### Linux / Mac
+## Linux / Mac
 
 ```bash
 source venv/bin/activate
 ```
 
-#### Windows
+## Windows
 
 ```bash
 venv\Scripts\activate
@@ -71,21 +100,74 @@ venv\Scripts\activate
 
 ---
 
-## 3. Install Flask
+# Install Dependencies
 
 ```bash
-pip install flask
+pip install flask pymongo python-dotenv requests
 ```
 
 ---
 
-# Run the Application
+# MongoDB Atlas Setup
 
-```bash
-python app.py
+Create a free cluster using:
+
+[MongoDB Atlas](https://www.mongodb.com/atlas?utm_source=chatgpt.com)
+
+---
+
+# Backend Environment Variables
+
+Create `.env` file inside `backend/`
+
+```env
+MONGO_USER=your_username
+MONGO_PASS=your_password
 ```
 
-Application will run on:
+---
+
+# Backend Application
+
+## Run Backend Server
+
+Navigate to backend folder:
+
+```bash
+cd backend
+```
+
+Run application:
+
+```bash
+python3 app.py
+```
+
+Backend runs on:
+
+```bash
+http://localhost:8000
+```
+
+---
+
+# Frontend Application
+
+## Run Frontend Server
+
+Open another terminal:
+
+```bash
+cd frontend
+```
+
+Run application:
+
+```bash
+python3 app.py
+```
+
+Frontend runs on:
 
 ```bash
 http://127.0.0.1:5000
@@ -93,13 +175,58 @@ http://127.0.0.1:5000
 
 ---
 
-# API Endpoints
+# Backend API Endpoints
+
+---
+
+## Submit User Data
+
+### Endpoint
+
+```bash
+POST /submit
+```
+
+### Description
+
+Stores form data into MongoDB Atlas.
+
+---
+
+## Get Users
+
+### Endpoint
+
+```bash
+GET /users
+```
+
+### Description
+
+Retrieves all users from MongoDB collection.
+
+### Sample Response
+
+```json
+{
+  "users": [
+    {
+      "name": "Ravinder",
+      "email": "test@gmail.com"
+    }
+  ]
+}
+```
+
+---
+
+# Frontend Routes
 
 ---
 
 ## Home Page
 
-### URL
+### Endpoint
 
 ```bash
 /
@@ -107,193 +234,105 @@ http://127.0.0.1:5000
 
 ### Description
 
-Displays:
+Renders HTML home page with:
 - Current day
-- Current date and time
+- Current date/time
 
 ---
 
-## About Page
+## Submit Form
 
-### URL
-
-```bash
-/about
-```
-
-### Response
-
-```text
-This is the about page of my Flask app
-```
-
----
-
-# Dynamic API Endpoint
-
-## URL
+### Endpoint
 
 ```bash
-/api/<name>
-```
-
-### Example
-
-```bash
-/api/satvik
-```
-
-### Conditions
-
-- Name length less than 3 → Error
-- Name = admin → Access denied
-- Name length greater than 10 → Success message
-- Otherwise → Basic greeting message
-
----
-
-# Arithmetic API
-
-## URL
-
-```bash
-/api/<operation>/<num1>/<num2>
-```
-
-### Supported Operations
-
-- add
-- subtract
-- multiply
-- divide
-
-### Examples
-
-#### Addition
-
-```bash
-/api/add/5/10
-```
-
-#### Subtraction
-
-```bash
-/api/subtract/10/5
-```
-
-#### Multiplication
-
-```bash
-/api/multiply/5/10
-```
-
-#### Division
-
-```bash
-/api/divide/10/2
-```
-
----
-
-# JSON API
-
-## URL
-
-```bash
-/api
-```
-
-### Sample Response
-
-```json
-{
-  "name": "Flask API",
-  "version": "1.0",
-  "description": "This is a simple API endpoint that returns JSON data."
-}
-```
-
----
-
-# Query Parameter API
-
-## URL
-
-```bash
-/api_request?name=satvik&age=25
+POST /submit
 ```
 
 ### Description
 
-Checks whether the user age is greater than 20.
-
-### Example Response
-
-```json
-{
-  "message": "Hello, satvik! You are 25 years old. You can use this site",
-  "name": "satvik",
-  "age": 25
-}
-```
+Sends form data to backend API.
 
 ---
 
-# Current Time API
+## Get Data
 
-## URL
+### Endpoint
 
 ```bash
-/time
+GET /get_data
 ```
 
-### Sample Response
+### Description
 
-```json
-{
-  "current_time": "2026-05-09 10:30:45"
-}
-```
+Fetches data from backend `/users` API.
 
 ---
 
-# Template Rendering
+# MongoDB Connection
 
-The application uses:
+MongoDB connection is created using:
 
 ```python
-render_template('index.html')
+MongoClient(MONGO_URI)
 ```
 
-to render HTML pages from the `templates` folder.
+MongoDB Atlas credentials are securely loaded from `.env`.
 
 ---
 
-# Debug Mode
-
-Application runs in debug mode:
-
-```python
-app.run(debug=True)
-```
-
-Benefits:
-- Auto reload on code changes
-- Detailed error messages during development
-
----
-
-# Learning Concepts Covered
+# Important Concepts Used
 
 - Flask Routing
-- Dynamic URLs
-- Query Parameters
-- JSON Responses
-- Request Handling
-- HTML Template Rendering
-- File Structure in Flask
-- Conditional Statements
-- Basic API Development
+- REST APIs
+- Frontend-Backend Communication
+- MongoDB Integration
+- Environment Variables
+- JSON APIs
+- Form Handling
+- HTTP Requests
+- API Architecture
+
+---
+
+# ObjectId Handling
+
+MongoDB returns `_id` as `ObjectId`.
+
+Before returning JSON response:
+
+```python
+user['_id'] = str(user['_id'])
+```
+
+This prevents JSON serialization errors.
+
+---
+
+# Run Multiple Services
+
+This project uses:
+- Backend service on port `8000`
+- Frontend service on port `5000`
+
+Frontend communicates with backend using:
+
+```python
+requests.get()
+requests.post()
+```
+
+---
+
+# Future Improvements
+
+- Add Update/Delete APIs
+- Add User Authentication
+- Add Docker Support
+- Add JWT Authentication
+- Deploy on AWS
+- Add React frontend
+- Add Logging
+- Add API validation
 
 ---
 
